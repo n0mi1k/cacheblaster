@@ -1,5 +1,7 @@
 # cacheblaster
-A web cache poisoning denial of service (CPDoS) test tool written in Python. This tool sends requests of different header payloads to force an error which may be cached on the server. If successful, this can causes a denial of service attack when other users browse to the same URL. This causes other users to see the similar error instead of loading the desired the page properly.
+A web cache poisoning denial of service (CPDoS) test tool written in Python. This tool sends requests of different header payloads to force an error on the target which may be cached on the server. If the response is cached, a denial of service attack occurs when affected URLs stop loading properly. It can also disrupt the functionalities and cause abnormal behaviors on the website by preventing dependant files such as JS and CSS from loading.
+
+<img src="https://github.com/n0mi1k/cacheblaster/assets/28621928/3370ff1c-94cc-45da-940e-130ff76220f1" width="620">
 
 ## Payload Options
 1. **HTTP Meta Characters [Default]** - Sends harmful meta characters such as \0x7\x07
@@ -22,15 +24,18 @@ Flags:
 ```
 **Note:** Enable cachebuster mode with `-c` to avoid DoS on active pages
 
-## Demo Run
-![cachebuster](https://github.com/n0mi1k/cacheblaster/assets/28621928/8ed5b750-63c7-4f3b-bca5-828619dc3b76)
+## Demo Attack
+<img src="https://github.com/n0mi1k/cacheblaster/assets/28621928/bf1c88e4-a100-4f96-82d4-2d6555f37dae" width="620">
+
+Above demo is on a vulnerable target running on a Cloudflare CDN. After sending the payload, the error response is cached and the page no longer loads. A cachebuster GET parameter is used to prevent other users from being affected by the DoS.
 
 ## Testing Tips
 - Use on a URL that obtains a 200 response [Recommended]
 - Enable cachebuster to prevent affecting other users with `-c`, a GET parameter URL will be generated
 - If a non 200 OK response is obtained, visit the URL to see if the error response is cached
 - This test requires trial an error. If it is not successful, try using a different path or run again later
-- Sometimes a vulnerable page may show that it is not, as the 200 OK responses are cached
+- Sometimes a vulnerable page may show that it is not vulnerable, when the 200 OK responses are cached
+- False positives are expected, always validate again by browsing the URL
 
 ## Disclaimer
 
