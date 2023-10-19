@@ -4,7 +4,7 @@ A web cache poisoning denial of service (CPDoS) test tool written in Python. Thi
 <img src="https://github.com/n0mi1k/cacheblaster/assets/28621928/3370ff1c-94cc-45da-940e-130ff76220f1" width="620">
 
 ## Payload Options
-1. **HTTP Meta Characters [Default]** - Sends harmful meta characters such as \0x7\x07
+1. **HTTP Meta Characters [Default]** - Sends harmful meta characters such as \x07\x07
 2. **Oversized HTTP Header** - Sends oversized header > 8192 bytes (Slow)
 3. **HTTP Method Override** - Override with unsupported HTTP method (Default=DELETE)
 
